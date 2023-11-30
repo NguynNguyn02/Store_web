@@ -14,6 +14,10 @@ namespace WebBanHang.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var item = db.Categories;
+            return View(item);
+        }
+        public ActionResult Add()
+        {
             return View();
         }
     }
