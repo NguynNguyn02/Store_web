@@ -1,4 +1,4 @@
-﻿
+﻿@model WebBanHang.Models.EF.Category
 @{
     ViewBag.Title = "Thêm mới danh mục";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -28,24 +28,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Danh mục</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Thêm mới</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+                    <li class="breadcrumb-item"><a href="~/admin/category">Danh mục</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
@@ -53,25 +36,88 @@
     </div><!-- /.container-fluid -->
 </section>
 
+
 <!-- Main content -->
 <section class="content">
 
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Title</h3>
+            <h3 class="card-title">Thông tin thêm mới danh mục</h3>
 
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
+           
         </div>
         <div class="card-body">
-            Start creating your amazing application!
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">bs-stepper</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="bs-stepper linear">
+                            <div class="bs-stepper-header" role="tablist">
+                                <!-- your steps here -->
+                                <div class="step active" data-target="#logins-part">
+                                    <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
+                                        <span class="bs-stepper-circle">1</span>
+                                        <span class="bs-stepper-label">Logins</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="step" data-target="#information-part">
+                                    <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
+                                        <span class="bs-stepper-circle">2</span>
+                                        <span class="bs-stepper-label">Thông tin thêm mới danh mục</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bs-stepper-content">
+                                @using (Html.BeginForm("Add", "Category", FormMethod.Post, new { }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(false)
+                                    <!-- your steps content here -->
+                                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tên danh mục</label>
+                                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                                            @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Mô tả</label>
+                                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Seo</label>
+                                            @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Seo Description</label>
+                                            @Html.TextAreaFor(x => x.SeoDescription, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Seo Keywords</label>
+                                            @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="~/admin/category" class="btn btn-danger">Quay lại</a>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                        
+                                 }
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        Visit <a href="https://github.com/Johann-S/bs-stepper/#how-to-use-it">bs-stepper documentation</a> for more examples and information about the plugin.
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -83,5 +129,5 @@
 
 </section>
 <!-- /.content -->
-  </div>
+
 

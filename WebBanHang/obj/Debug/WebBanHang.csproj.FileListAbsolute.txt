@@ -108,3 +108,4 @@ C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\We
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.CreateDatabase.resources
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.GenerateResource.cache
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.TenMigrationCuaBan.resources

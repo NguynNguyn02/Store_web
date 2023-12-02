@@ -180,6 +180,10 @@
     <Compile Include="Migrations\202311240304026_CreateDatabase.Designer.cs">
       <DependentUpon>202311240304026_CreateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312021021587_TenMigrationCuaBan.cs" />
+    <Compile Include="Migrations\202312021021587_TenMigrationCuaBan.Designer.cs">
+      <DependentUpon>202312021021587_TenMigrationCuaBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -2255,6 +2259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202311240304026_CreateDatabase.resx">
       <DependentUpon>202311240304026_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312021021587_TenMigrationCuaBan.resx">
+      <DependentUpon>202312021021587_TenMigrationCuaBan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

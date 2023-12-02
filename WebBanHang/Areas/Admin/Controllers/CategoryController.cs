@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
+using WebBanHang.Models.EF;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
@@ -19,6 +20,16 @@ namespace WebBanHang.Areas.Admin.Controllers
         public ActionResult Add()
         {
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+            return RedirectToAction("Index");
+            }
+            return View(model); 
         }
     }
 }
