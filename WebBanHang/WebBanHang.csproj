@@ -180,13 +180,18 @@
     <Compile Include="Migrations\202311240304026_CreateDatabase.Designer.cs">
       <DependentUpon>202311240304026_CreateDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202312021021587_TenMigrationCuaBan.cs" />
-    <Compile Include="Migrations\202312021021587_TenMigrationCuaBan.Designer.cs">
-      <DependentUpon>202312021021587_TenMigrationCuaBan.cs</DependentUpon>
+    <Compile Include="Migrations\202312031500215_updateData.cs" />
+    <Compile Include="Migrations\202312031500215_updateData.Designer.cs">
+      <DependentUpon>202312031500215_updateData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\UpdateCategory.cs" />
+    <Compile Include="Migrations\UpdateCategory.Designer.cs">
+      <DependentUpon>UpdateCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
+    <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Contact.cs" />
@@ -2193,6 +2198,7 @@
     <Content Include="Areas\Admin\Views\Shared\_PartialSideBar.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2260,8 +2266,11 @@
     <EmbeddedResource Include="Migrations\202311240304026_CreateDatabase.resx">
       <DependentUpon>202311240304026_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202312021021587_TenMigrationCuaBan.resx">
-      <DependentUpon>202312021021587_TenMigrationCuaBan.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202312031500215_updateData.resx">
+      <DependentUpon>202312031500215_updateData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\UpdateCategory.resx">
+      <DependentUpon>UpdateCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

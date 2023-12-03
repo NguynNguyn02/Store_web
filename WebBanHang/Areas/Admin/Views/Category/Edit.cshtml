@@ -1,6 +1,6 @@
 ﻿@model WebBanHang.Models.EF.Category
 @{
-    ViewBag.Title = "Thêm mới danh mục";
+    ViewBag.Title = "Cập nhật danh mục";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
             <a href="/admin/category" class="nav-link">Danh mục</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/category/add" class="nav-link">Thêm mới </a>
+            <a href="#" class="nav-link">Cập nhật </a>
         </li>
     </ul>
 }
@@ -24,12 +24,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Danh sách danh mục</h1>
+                <h1>Cập nhật danh mục</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="~/admin/category">Danh mục</a></li>
-                    <li class="breadcrumb-item active">Thêm mới</li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div>
         </div>
@@ -43,9 +43,9 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Thông tin thêm mới danh mục</h3>
+            <h3 class="card-title">Thông tin danh mục</h3>
 
-           
+
         </div>
         <div class="card-body">
             <div class="col-md-12">
@@ -67,7 +67,7 @@
                                 <div class="step" data-target="#information-part">
                                     <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
                                         <span class="bs-stepper-circle">2</span>
-                                        <span class="bs-stepper-label">Thông tin thêm mới danh mục</span>
+                                        <span class="bs-stepper-label">Thông tin cập nhật danh mục</span>
                                     </button>
                                 </div>
                             </div>
@@ -77,40 +77,41 @@
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(false)
+                                    @Html.HiddenFor(x=>x.Id)
                                     <!-- your steps content here -->
-                                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên danh mục</label>
-                                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên danh mục" })
-                                        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Tên danh mục</label>
+                                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                                            @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Mô tả</label>
+                                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Thứ tự</label>
+                                            @Html.TextBoxFor(x => x.Position, new { @class = "form-control", @Value = "1" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Seo Title</label>
+                                            @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Seo Description</label>
+                                            @Html.TextAreaFor(x => x.SeoDescription, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Seo Keywords</label>
+                                            @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="~/admin/category" class="btn btn-danger">Quay lại</a>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Mô tả</label>
-                                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Thứ tự</label>
-                                        @Html.TextBoxFor(x => x.Position, new { @class = "form-control",@Value = "1" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Seo Title</label>
-                                        @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Seo Description</label>
-                                        @Html.TextAreaFor(x => x.SeoDescription, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Seo Keywords</label>
-                                        @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
-                                    </div>
-                                    <div class="form-group">
-                                        <a href="~/admin/category" class="btn btn-danger">Quay lại</a>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                                        
-                                 }
+
+                                }
 
                             </div>
                         </div>
@@ -133,5 +134,3 @@
 
 </section>
 <!-- /.content -->
-
-

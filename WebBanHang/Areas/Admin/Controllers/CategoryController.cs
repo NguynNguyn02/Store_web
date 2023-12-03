@@ -27,9 +27,19 @@ namespace WebBanHang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.CreatedDate = DateTime.Now;
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
+                db.Categories.Add(model);
+                db.SaveChanges();
             return RedirectToAction("Index");
             }
             return View(model); 
+        }
+        public ActionResult Edit(int id)
+        {
+            var item = db.Categories.Find(id);
+            return View();
         }
     }
 }

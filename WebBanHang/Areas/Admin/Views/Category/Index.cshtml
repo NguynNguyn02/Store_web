@@ -56,14 +56,28 @@
                     <tr>
                         @if (Model != null && Model.Any())
                         {
-                            <td></td>
-                            <td>Danh mục</td>
-                            <td>Thứ tự</td>
-                            <td></td>
+                            var i = 1;
+
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                <td>@i</td>
+                                <td>@item.Title</td>
+                                <td>@item.Position</td>
+                                <td>
+                                    <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/category/delete/@item.Id" class="btn btn-sm btn-danger">Xóa</a>
+                                </td>
+                                </tr>
+                                i++;
+                            }
+
                         }
                         else
                         {
-                            <td colspan="4">Không có bản ghi nào!!!</td>
+                            <tr>
+                                <td colspan="4">Không có bản ghi nào!!!</td>
+                            </tr>
                         }
                     </tr>
                 </tbody>
