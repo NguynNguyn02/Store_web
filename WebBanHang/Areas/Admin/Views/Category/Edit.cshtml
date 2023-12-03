@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="bs-stepper-content">
-                                @using (Html.BeginForm("Add", "Category", FormMethod.Post, new { }))
+                                @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { }))
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(false)

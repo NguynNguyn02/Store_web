@@ -41,5 +41,28 @@ namespace WebBanHang.Areas.Admin.Controllers
             var item = db.Categories.Find(id);
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Categories.Attach(model);
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
+                db.Entry(model).Property(x => x.Title).IsModified = true;
+                db.Entry(model).Property(x => x.Description).IsModified = true;
+                db.Entry(model).Property(x => x.Alias).IsModified = true;
+                db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
+                db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
+                db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                db.Entry(model).Property(x => x.ModifiedBy).IsModified = true;
+                db.Entry(model).Property(x => x.Position).IsModified = true;
+                db.Entry(model).Property(x => x.ModifiedDate).IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
     }
 }
