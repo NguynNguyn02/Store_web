@@ -66,7 +66,7 @@
                                 <td>@item.Position</td>
                                 <td>
                                     <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="/admin/category/delete/@item.Id" class="btn btn-sm btn-danger">Xóa</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                                 </tr>
                                 i++;
@@ -92,3 +92,14 @@
     <!-- /.card -->
 
 </section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                alert(id);
+            })
+        })
+    </script>    
+}
