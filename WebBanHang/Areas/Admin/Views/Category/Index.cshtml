@@ -12,7 +12,7 @@
             <a href="~/admin/home" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/category" class="nav-link">Danh mục</a>
+            <a href="/admin/category" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -20,12 +20,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Danh sách danh mục</h1>
+                <h1>Danh sách @ViewBag.Title</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Danh mục</li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
                 </ol>
             </div>
         </div>
@@ -60,14 +60,14 @@
 
                             foreach (var item in Model)
                             {
-                                <tr>
-                                <td>@i</td>
-                                <td>@item.Title</td>
-                                <td>@item.Position</td>
-                                <td>
-                                    <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
-                                </td>
+                                <tr id="trow_@item.Id"> 
+                                    <td>@i</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.Position</td>
+                                    <td>
+                                        <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                        <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    </td>
                                 </tr>
                                 i++;
                             }
@@ -98,7 +98,20 @@
         $(document).ready(function () {
             $('body').on('click', '.btnDelete', function () {
                 var id = $(this).data("id");
-                alert(id);
+                var conf = confirm("Bạn có muốn xóa danh mục này không ?")
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/category/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
+                                
+                            }
+                        }
+                    })
+                }
             })
         })
     </script>    

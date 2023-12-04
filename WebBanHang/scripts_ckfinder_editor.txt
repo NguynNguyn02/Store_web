@@ -1,0 +1,19 @@
+﻿@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/Content/ckeditor/ckeditor/config.js',
+                extraAllowedContent:'span'
+            });
+            
+        })
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        };
+    </script>    
+    
+}

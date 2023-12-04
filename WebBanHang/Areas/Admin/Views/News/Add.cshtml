@@ -1,0 +1,167 @@
+﻿@model WebBanHang.Models.EF.News
+@{
+    ViewBag.Title = "Thêm mới tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/news" class="nav-link">Tin tức</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/news/add" class="nav-link">Thêm mới </a>
+        </li>
+    </ul>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh sách Tin tức</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/admin/news">Tin tức</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin thêm mới Tin tức</h3>
+
+
+        </div>
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">bs-stepper</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="bs-stepper linear">
+                            <div class="bs-stepper-header" role="tablist">
+                                <!-- your steps here -->
+                                <div class="step active" data-target="#logins-part">
+                                    <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
+                                        <span class="bs-stepper-circle">1</span>
+                                        <span class="bs-stepper-label">Tin tức</span>
+                                    </button>
+                                </div>
+                                <div class="line"></div>
+                                <div class="step" data-target="#information-part">
+                                    <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
+                                        <span class="bs-stepper-circle">2</span>
+                                        <span class="bs-stepper-label">Thông tin thêm mới Tin tức</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bs-stepper-content">
+                                @using (Html.BeginForm("Add", "News", FormMethod.Post, new { }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(false)
+                                    <!-- your steps content here -->
+                                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Tiêu đề</label>
+                                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên Tin tức" })
+                                        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">Ảnh đại diện</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <input type="button" class="btn btn-default" value="Tải ảnh" onclick="BrowseServer('txtImage');"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Mô tả</label>
+                                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Chi tiết</label>
+                                        @Html.TextAreaFor(x => x.Detail, new { @class = "form-control",@id="txtDetail" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Seo Title</label>
+                                        @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Seo Description</label>
+                                        @Html.TextAreaFor(x => x.SeoDescription, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Seo Keywords</label>
+                                        @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="~/admin/news" class="btn btn-danger">Quay lại</a>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/Content/ckeditor/ckeditor/config.js',
+                extraAllowedContent:'span'
+            });
+            
+        })
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        };
+    </script>    
+    
+}
