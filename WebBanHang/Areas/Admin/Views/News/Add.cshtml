@@ -92,7 +92,7 @@
                                                     @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
                                                 </div>
                                                 <div class="input-group-append">
-                                                    <input type="button" class="btn btn-default" value="Tải ảnh" onclick="BrowseServer('txtImage');"/>
+                                                    <input type="button" class="btn btn-default" value="Tải ảnh" onclick="BrowseServer('txtImage');" />
                                                 </div>
                                             </div>
                                         </div>
@@ -103,9 +103,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Chi tiết</label>
-                                        @Html.TextAreaFor(x => x.Detail, new { @class = "form-control",@id="txtDetail" })
+                                        @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
                                     </div>
-
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Hiển thị</label>
+                                        @Html.CheckBoxFor(x => x.IsActive,new {@checked= "@checked" })
+                                    </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Seo Title</label>
                                         @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })

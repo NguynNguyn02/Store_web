@@ -189,6 +189,10 @@
     <Compile Include="Migrations\202312031500215_updateData.Designer.cs">
       <DependentUpon>202312031500215_updateData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312051351429_UpdateActive.cs" />
+    <Compile Include="Migrations\202312051351429_UpdateActive.Designer.cs">
+      <DependentUpon>202312051351429_UpdateActive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
@@ -4014,6 +4018,7 @@
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
     <Content Include="Content\ckfinder\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4086,6 +4091,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312031500215_updateData.resx">
       <DependentUpon>202312031500215_updateData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312051351429_UpdateActive.resx">
+      <DependentUpon>202312051351429_UpdateActive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>

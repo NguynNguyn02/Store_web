@@ -50,6 +50,7 @@
                         <td>Hình ảnh</td>
                         <td>Tiêu đề</td>
                         <td>Ngày tạo</td>
+                        <td>Trạng thái</td>
                         <td></td>
                     </tr>
                 </thead>
@@ -58,15 +59,19 @@
                         @if (Model != null && Model.Any())
                         {
                             var i = 1;
-
                             foreach (var item in Model)
                             {
+                                var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td>@i</td>
-                                <td><img src="@item.Image" width="100px"/></td>
-                                <td>@item.Title</td>
+                                <td><img src="@item.Image" width="100"/></td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a href="#" data-id="@item.Id" class="btnActive">
+                                    @Html.Raw(strCheck)
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
@@ -98,24 +103,51 @@
 
     @section scripts{
         <script>
-        $(document).ready(function () {
-            $('body').on('click', '.btnDelete', function () {
-                var id = $(this).data("id");
-                var conf = confirm("Bạn có muốn xóa danh mục này không ?")
-                if (conf === true) {
-                    $.ajax({
-                        url: '/admin/category/delete',
-                        type: 'POST',
-                        data: { id: id },
-                        success: function (rs) {
-                            if (rs.success) {
-                                $('#trow_' + id).remove();
+            $(document).ready(function () {
+                $('body').on('click', '.btnDelete', function () {
+                    var id = $(this).data("id");
+                    var conf = confirm("Bạn có muốn xóa danh mục này không ?")
+                    if (conf === true) {
+                        $.ajax({
+                            url: '/admin/news/delete',
+                            type: 'POST',
+                            data: { id: id },
+                            success: function (rs) {
+                                if (rs.success) {
+                                    $('#trow_' + id).remove();
 
+                                }
                             }
-                        }
-                    })
-                }
-            })
-        })
+                        })
+                    }
+                })
+            });
+            $(document).ready(function () {
+                $('body').on('click', '.btnActive', function (e) {
+                    e.preventDefault();
+                    var btn = $(this)
+                    var id = btn.data("id");
+                     $.ajax({
+                            url: '/admin/news/IsActive',
+                            type: 'POST',
+                            data: { id: id },
+                         success: function (rs) {
+                                if (rs.success) {
+                                    if (rs.isActive) {
+                                        btn.html("<i class='fas fa-times text-danger'></i>")
+                                    }
+                                    else {
+                                        btn.html("<i class='fas fa-check text-success'></i>")
+                                    }
+                                }
+                            }
+                        })
+                    
+                })
+            });
+
         </script>
     }
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />

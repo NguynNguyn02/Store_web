@@ -112,3 +112,4 @@ C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\We
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.AssemblyReference.cache
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\CKFinder.dll
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\CKFinder.pdb
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateActive.resources
