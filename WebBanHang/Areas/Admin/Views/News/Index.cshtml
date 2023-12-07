@@ -13,7 +13,7 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/admin/category" class="nav-link">@ViewBag.Title</a>
-        </li>
+        </li>x
     </ul>
 }
 <section class="content-header">
@@ -40,12 +40,14 @@
         <div class="card-header">
             <div class="card-tools">
                 <a href="~/admin/news/add" class="btn btn-primary">Thêm mới</a>
+                <a href="#" class="btn btn-danger btnDeleteAll">Xóa</a>
             </div>
         </div>
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <td><input type="checkbox" id="selectAll"/></td>
                         <td>STT</td>
                         <td>Hình ảnh</td>
                         <td>Tiêu đề</td>
@@ -55,7 +57,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    
                         @if (Model != null && Model.Any())
                         {
                             var i = 1;
@@ -63,13 +65,14 @@
                             {
                                 var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
+                                <td><input type="checkbox" class="ckbItem" value="@item.Id"/></td>
                                 <td>@i</td>
-                                <td><img src="@item.Image" width="100"/></td>
+                                <td><img src="@item.Image" width="100" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 <td>
                                     <a href="#" data-id="@item.Id" class="btnActive">
-                                    @Html.Raw(strCheck)
+                                        @Html.Raw(strCheck)
                                     </a>
                                 </td>
                                 <td>
@@ -87,13 +90,13 @@
                             <td colspan="4">Không có bản ghi nào!!!</td>
                         </tr>
                     }
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                
             </div>
             <!-- /.card-footer-->
         </div>
@@ -104,6 +107,61 @@
     @section scripts{
         <script>
             $(document).ready(function () {
+                $('body').on('click', '.btnDeleteAll', function (e) {
+                    e.preventDefault;
+                    var checkbox = $(this).parents('.card').find('tbody tr td input:checkbox');
+                    var i = 0;
+                    var str = "";
+                    checkbox.each(function () {
+                        if (this.checked) {
+                            checkbox.attr('selected', 'checked')
+                            var _id = $(this).val();
+                            if (i === 0) {
+                                str += _id;
+                            }
+                            else {
+                                str += "," + _id;
+                            }
+                            i++;
+
+                        }
+                        else {
+                            checkbox.attr('selected', '')
+                        }
+                    })
+                    if (str.length > 0) {
+                        var conf = confirm('Bạn có muốn xóa các mục này không ?');
+                        if (conf === true) {
+                            $.ajax({
+                                url: '/admin/news/deleteAll',
+                                type: 'POST',
+                                data: { ids: str },
+                                success: function (rs) {
+                                    if (rs.success) {
+                                        location.reload();
+                                    }
+                                }
+                            })
+                        }
+                        
+                    }
+                });
+                $('body').on('change', '#selectAll', function () {
+                    debugger;
+
+                    var checkStatus = this.checked;
+
+                    var checkbox = $(this).parents('.card-body').find('tbody tr td input:checkbox');
+                    checkbox.each(function () {
+                        this.checked = checkStatus;
+                        if (this.checked) {
+                            checkbox.attr('selected', 'checked');
+                        }
+                        else {
+                            checkbox.attr('selected', 'checked');
+                        }
+                    })
+                });
                 $('body').on('click', '.btnDelete', function () {
                     var id = $(this).data("id");
                     var conf = confirm("Bạn có muốn xóa danh mục này không ?")
@@ -120,7 +178,7 @@
                             }
                         })
                     }
-                })
+                });
             });
             $(document).ready(function () {
                 $('body').on('click', '.btnActive', function (e) {
