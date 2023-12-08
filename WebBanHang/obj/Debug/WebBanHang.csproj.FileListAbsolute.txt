@@ -113,3 +113,8 @@ C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\We
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\CKFinder.dll
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\CKFinder.pdb
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateActive.resources
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update_posts_products.resources
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\PagedList.dll
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\PagedList.Mvc.dll
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\PagedList.xml
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\PagedList.Mvc.xml

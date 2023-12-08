@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebBanHang.Models.EF.News>
+﻿@model PagedList.IPagedList< WebBanHang.Models.EF.News >
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -13,7 +15,7 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/admin/category" class="nav-link">@ViewBag.Title</a>
-        </li>x
+        </li>
     </ul>
 }
 <section class="content-header">
@@ -37,17 +39,32 @@
 
     <!-- Default box -->
     <div class="card">
+        
         <div class="card-header">
             <div class="card-tools">
                 <a href="~/admin/news/add" class="btn btn-primary">Thêm mới</a>
                 <a href="#" class="btn btn-danger btnDeleteAll">Xóa</a>
             </div>
         </div>
+
         <div class="card-body">
+            <div class="row">
+                <div class="col-5">
+                    @using (Html.BeginForm("index", "News", FormMethod.Get,new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("searchText")
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                     }  
+                </div>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <td><input type="checkbox" id="selectAll"/></td>
+                        <td><input type="checkbox" id="selectAll" /></td>
                         <td>STT</td>
                         <td>Hình ảnh</td>
                         <td>Tiêu đề</td>
@@ -57,15 +74,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-                        @if (Model != null && Model.Any())
+
+                    @if (Model != null && Model.Any())
+                    {
+                        var i = 1 + ViewBag.PageSize * (ViewBag.PageIndex - 1);
+
+                        foreach (var item in Model)
                         {
-                            var i = 1;
-                            foreach (var item in Model)
-                            {
-                                var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                            var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
-                                <td><input type="checkbox" class="ckbItem" value="@item.Id"/></td>
+                                <td><input type="checkbox" class="ckbItem" value="@item.Id" /></td>
                                 <td>@i</td>
                                 <td><img src="@item.Image" width="100" /></td>
                                 <td>@item.Title</td>
@@ -90,122 +108,128 @@
                             <td colspan="4">Không có bản ghi nào!!!</td>
                         </tr>
                     }
-                        
-                    </tbody>
-                </table>
+
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-5"></div>
+                <div class="col-7">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                
-            </div>
-            <!-- /.card-footer-->
         </div>
-        <!-- /.card -->
+        <!-- /.card-body -->
+        <div class="card-footer">
 
-    </section>
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
 
-    @section scripts{
-        <script>
-            $(document).ready(function () {
-                $('body').on('click', '.btnDeleteAll', function (e) {
-                    e.preventDefault;
-                    var checkbox = $(this).parents('.card').find('tbody tr td input:checkbox');
-                    var i = 0;
-                    var str = "";
-                    checkbox.each(function () {
-                        if (this.checked) {
-                            checkbox.attr('selected', 'checked')
-                            var _id = $(this).val();
-                            if (i === 0) {
-                                str += _id;
-                            }
-                            else {
-                                str += "," + _id;
-                            }
-                            i++;
+</section>
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDeleteAll', function (e) {
+                e.preventDefault;
+                var checkbox = $(this).parents('.card').find('tbody tr td input:checkbox');
+                var i = 0;
+                var str = "";
+                checkbox.each(function () {
+                    if (this.checked) {
+                        checkbox.attr('selected', 'checked')
+                        var _id = $(this).val();
+                        if (i === 0) {
+                            str += _id;
                         }
                         else {
-                            checkbox.attr('selected', '')
+                            str += "," + _id;
                         }
-                    })
-                    if (str.length > 0) {
-                        var conf = confirm('Bạn có muốn xóa các mục này không ?');
-                        if (conf === true) {
-                            $.ajax({
-                                url: '/admin/news/deleteAll',
-                                type: 'POST',
-                                data: { ids: str },
-                                success: function (rs) {
-                                    if (rs.success) {
-                                        location.reload();
-                                    }
-                                }
-                            })
-                        }
-                        
+                        i++;
+
                     }
-                });
-                $('body').on('change', '#selectAll', function () {
-                    debugger;
-
-                    var checkStatus = this.checked;
-
-                    var checkbox = $(this).parents('.card-body').find('tbody tr td input:checkbox');
-                    checkbox.each(function () {
-                        this.checked = checkStatus;
-                        if (this.checked) {
-                            checkbox.attr('selected', 'checked');
-                        }
-                        else {
-                            checkbox.attr('selected', 'checked');
-                        }
-                    })
-                });
-                $('body').on('click', '.btnDelete', function () {
-                    var id = $(this).data("id");
-                    var conf = confirm("Bạn có muốn xóa danh mục này không ?")
+                    else {
+                        checkbox.attr('selected', '')
+                    }
+                })
+                if (str.length > 0) {
+                    var conf = confirm('Bạn có muốn xóa các mục này không ?');
                     if (conf === true) {
                         $.ajax({
-                            url: '/admin/news/delete',
+                            url: '/admin/news/deleteAll',
                             type: 'POST',
-                            data: { id: id },
+                            data: { ids: str },
                             success: function (rs) {
                                 if (rs.success) {
-                                    $('#trow_' + id).remove();
-
+                                    location.reload();
                                 }
                             }
                         })
                     }
-                });
+
+                }
             });
-            $(document).ready(function () {
-                $('body').on('click', '.btnActive', function (e) {
-                    e.preventDefault();
-                    var btn = $(this)
-                    var id = btn.data("id");
-                     $.ajax({
-                            url: '/admin/news/IsActive',
-                            type: 'POST',
-                            data: { id: id },
-                         success: function (rs) {
-                                if (rs.success) {
-                                    if (rs.isActive) {
-                                        btn.html("<i class='fas fa-times text-danger'></i>")
-                                    }
-                                    else {
-                                        btn.html("<i class='fas fa-check text-success'></i>")
-                                    }
-                                }
-                            }
-                        })
-                    
+            $('body').on('change', '#selectAll', function () {
+                debugger;
+
+                var checkStatus = this.checked;
+
+                var checkbox = $(this).parents('.card-body').find('tbody tr td input:checkbox');
+                checkbox.each(function () {
+                    this.checked = checkStatus;
+                    if (this.checked) {
+                        checkbox.attr('selected', 'checked');
+                    }
+                    else {
+                        checkbox.attr('selected', 'checked');
+                    }
                 })
             });
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm("Bạn có muốn xóa danh mục này không ?")
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/news/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
 
-        </script>
-    }
+                            }
+                        }
+                    })
+                }
+            });
+        });
+        $(document).ready(function () {
+            $('body').on('click', '.btnActive', function (e) {
+                e.preventDefault();
+                var btn = $(this)
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/news/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isActive) {
+                                btn.html("<i class='fas fa-times text-danger'></i>")
+                            }
+                            else {
+                                btn.html("<i class='fas fa-check text-success'></i>")
+                            }
+                        }
+                    }
+                })
+
+            })
+        });
+
+    </script>
+}
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />

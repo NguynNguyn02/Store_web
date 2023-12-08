@@ -50,6 +50,12 @@
       <HintPath>..\..\..\..\..\Downloads\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -175,6 +181,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -192,6 +199,10 @@
     <Compile Include="Migrations\202312051351429_UpdateActive.cs" />
     <Compile Include="Migrations\202312051351429_UpdateActive.Designer.cs">
       <DependentUpon>202312051351429_UpdateActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312072031157_Update_posts_products.cs" />
+    <Compile Include="Migrations\202312072031157_Update_posts_products.Designer.cs">
+      <DependentUpon>202312072031157_Update_posts_products.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
@@ -3902,6 +3913,7 @@
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -4019,6 +4031,9 @@
     <Content Include="Content\ckfinder\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4094,6 +4109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312051351429_UpdateActive.resx">
       <DependentUpon>202312051351429_UpdateActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312072031157_Update_posts_products.resx">
+      <DependentUpon>202312072031157_Update_posts_products.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>

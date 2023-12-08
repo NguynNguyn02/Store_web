@@ -1,6 +1,8 @@
 ﻿@model WebBanHang.Models.EF.News
 @{
     ViewBag.Title = "Thêm mới tin tức";
+    ViewBag.Keyword1 = "Tin tức";
+    ViewBag.Keyword2 = "tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +15,7 @@
             <a href="~/admin/home" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/news" class="nav-link">Tin tức</a>
+            <a href="/admin/news" class="nav-link">@ViewBag.Keyword1</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/admin/news/add" class="nav-link">Thêm mới </a>
@@ -24,11 +26,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Danh sách Tin tức</h1>
+                <h1>Danh sách @ViewBag.Keyword2</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="~/admin/news">Tin tức</a></li>
+                    <li class="breadcrumb-item"><a href="~/admin/news">@ViewBag.Keyword1</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
@@ -43,7 +45,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Thông tin thêm mới Tin tức</h3>
+            <h3 class="card-title">Thông tin thêm mới @ViewBag.Keyword2</h3>
 
 
         </div>
@@ -51,7 +53,7 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title">bs-stepper</h3>
+                        <h3 class="card-title"></h3>
                     </div>
                     <div class="card-body p-0">
                         <div class="bs-stepper linear">
@@ -67,7 +69,7 @@
                                 <div class="step" data-target="#information-part">
                                     <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
                                         <span class="bs-stepper-circle">2</span>
-                                        <span class="bs-stepper-label">Thông tin thêm mới Tin tức</span>
+                                        <span class="bs-stepper-label">Thông tin thêm mới @ViewBag.Keyword2</span>
                                     </button>
                                 </div>
                             </div>

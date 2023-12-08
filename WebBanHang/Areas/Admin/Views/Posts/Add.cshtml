@@ -1,10 +1,12 @@
-﻿@model WebBanHang.Models.EF.News
+﻿@model WebBanHang.Models.EF.Posts
+
 @{
-    ViewBag.Title = "Cập nhật tin tức";
-    ViewBag.Keyword1 = "Tin tức";
-    ViewBag.Keyword2 = "tin tức";
+    ViewBag.Title = "Thêm mới bài viết";
+    ViewBag.Keyword1 = "Bài viết";
+    ViewBag.Keyword2 = "bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 @section naviheader{
     <ul class="navbar-nav">
@@ -15,10 +17,10 @@
             <a href="~/admin/home" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/news" class="nav-link">@ViewBag.Keyword1</a>
+            <a href="/admin/posts" class="nav-link">@ViewBag.Keyword1</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/news/add" class="nav-link">Cập nhật </a>
+            <a href="/admin/posts/add" class="nav-link">Thêm mới </a>
         </li>
     </ul>
 }
@@ -30,8 +32,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="~/admin/news">@ViewBag.Keyword1</a></li>
-                    <li class="breadcrumb-item active">Cập nhật</li>
+                    <li class="breadcrumb-item"><a href="~/admin/posts">@ViewBag.Keyword1</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
         </div>
@@ -45,7 +47,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Thông tin cập nhật @ViewBag.Keyword2</h3>
+            <h3 class="card-title">Thông tin thêm mới @ViewBag.Keyword2</h3>
 
 
         </div>
@@ -62,28 +64,24 @@
                                 <div class="step active" data-target="#logins-part">
                                     <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger" aria-selected="true">
                                         <span class="bs-stepper-circle">1</span>
-                                        <span class="bs-stepper-label">Tin tức</span>
+                                        <span class="bs-stepper-label">@ViewBag.Keyword1</span>
                                     </button>
                                 </div>
                                 <div class="line"></div>
                                 <div class="step" data-target="#information-part">
                                     <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger" aria-selected="false" disabled="disabled">
                                         <span class="bs-stepper-circle">2</span>
-                                        <span class="bs-stepper-label">Thông tin thêm mới @ViewBag.Keyword2</span>
+                                        <span class="bs-stepper-label">Thông tin thêm mới Tin tức</span>
                                     </button>
                                 </div>
                             </div>
-                            @if (Model != null)
-                             {
-                                <div class="bs-stepper-content">
-                                    @using (Html.BeginForm("Edit", "News", FormMethod.Post, new { }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        @Html.ValidationSummary(false)
-                                        @Html.HiddenFor(x => x.Id)
-                                        @Html.HiddenFor(x => x.CategoryId)
-                                        @Html.HiddenFor(x => x.CreatedDate)
-                                        <!-- your steps content here -->
+
+                            <div class="bs-stepper-content">
+                                @using (Html.BeginForm("Add", "posts", FormMethod.Post, new { }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(false)
+                                    <!-- your steps content here -->
                                     <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tiêu đề</label>
@@ -113,7 +111,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Hiển thị</label>
-                                            @Html.CheckBoxFor(x => x.IsActive)
+                                            @Html.CheckBoxFor(x => x.IsActive, new { @checked = "@checked" })
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Seo Title</label>
@@ -128,17 +126,15 @@
                                             @Html.TextAreaFor(x => x.SeoKeywords, new { @class = "form-control" })
                                         </div>
                                         <div class="form-group">
-                                            <a href="~/admin/news" class="btn btn-danger">Quay lại</a>
+                                            <a href="~/admin/posts" class="btn btn-danger">Quay lại</a>
                                             <button type="submit" class="btn btn-primary">Lưu</button>
                                         </div>
                                     </div>
 
-                                    }
+                                }
 
-                                </div>
-                             }
                             </div>
-                            
+                        </div>
                     </div>
                     <!-- /.card-body -->
 
@@ -148,7 +144,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            
+
         </div>
         <!-- /.card-footer-->
     </div>
@@ -176,3 +172,5 @@
     </script>
 
 }
+
+
