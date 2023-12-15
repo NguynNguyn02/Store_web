@@ -15,6 +15,7 @@ namespace WebBanHang.Models.EF
         public int Id { get; set; }
         public int ProductID { get; set; }
         public string Image { get; set; }
-        public string IsDefault { get; set; }
+        public bool IsDefault { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

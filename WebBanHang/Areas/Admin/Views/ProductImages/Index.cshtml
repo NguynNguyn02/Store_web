@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebBanHang.Models.EF.ProductImage>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<style>
+    .glImage{
+        list-style:none;
+        margin:0;
+        padding:0;
+        display:flex;
+    }
+    .glImage li{
+        display: inline-block;
+    }
+</style>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Ảnh sản phẩm </h3>
+
+        <div class="card-tools">
+            <button type="button" class="btn btn-danger" data-card-widget="collapse" title="Collapse">
+                Xóa hết
+            </button>
+            <button type="button" class="btn btn-success" data-card-widget="remove" title="Remove">
+                Thêm ảnh
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <ul class="glImage">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <li>
+                        <img src="@item.Image" width="100" height="100" />
+                    </li>
+                }
+            }
+        </ul>
+         
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+    </div>
+    <!-- /.card-footer-->
+</div>

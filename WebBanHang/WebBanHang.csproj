@@ -182,6 +182,9 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductImagesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -203,6 +206,22 @@
     <Compile Include="Migrations\202312072031157_Update_posts_products.cs" />
     <Compile Include="Migrations\202312072031157_Update_posts_products.Designer.cs">
       <DependentUpon>202312072031157_Update_posts_products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312122244545_Updateproductcategory.cs" />
+    <Compile Include="Migrations\202312122244545_Updateproductcategory.Designer.cs">
+      <DependentUpon>202312122244545_Updateproductcategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312122355480_Updateproductcategory2.cs" />
+    <Compile Include="Migrations\202312122355480_Updateproductcategory2.Designer.cs">
+      <DependentUpon>202312122355480_Updateproductcategory2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312141615526_Update-productImage.cs" />
+    <Compile Include="Migrations\202312141615526_Update-productImage.Designer.cs">
+      <DependentUpon>202312141615526_Update-productImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312142054542_Update-product.cs" />
+    <Compile Include="Migrations\202312142054542_Update-product.Designer.cs">
+      <DependentUpon>202312142054542_Update-product.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
@@ -3918,6 +3937,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\autoNumeric-1.9.45.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -4034,6 +4054,13 @@
     <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductImages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutEmpty.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4046,6 +4073,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="scripts_ckfinder_editor.txt" />
+    <Content Include="Uploads\images\nguyen.jpg" />
+    <Content Include="Uploads\_thumbs\Images\nguyen.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -4086,6 +4115,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\ckfinder\userfiles\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Uploads\files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -4112,6 +4142,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312072031157_Update_posts_products.resx">
       <DependentUpon>202312072031157_Update_posts_products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312122244545_Updateproductcategory.resx">
+      <DependentUpon>202312122244545_Updateproductcategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312122355480_Updateproductcategory2.resx">
+      <DependentUpon>202312122355480_Updateproductcategory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312141615526_Update-productImage.resx">
+      <DependentUpon>202312141615526_Update-productImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312142054542_Update-product.resx">
+      <DependentUpon>202312142054542_Update-product.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
