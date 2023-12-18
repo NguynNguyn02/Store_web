@@ -46,25 +46,12 @@
         </div>
 
         <div class="card-body">
-            <div class="row">
-                <div class="col-5">
-                    @using (Html.BeginForm("index", "News", FormMethod.Get, new { }))
-                    {
-                        <div class="input-group input-group-sm">
-                            @Html.TextBox("searchText")
-                            <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
-                            </span>
-                        </div>
-                    }
-                </div>
-            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <td><input type="checkbox" id="selectAll" /></td>
                         <td>STT</td>
-
+                        <td>Ảnh</td>
                         <td>Tiêu đề</td>
                         <td>Ngày tạo</td>
                         <td>Trạng thái</td>
@@ -81,8 +68,8 @@
                             //var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="ckbItem" value="@item.Id" /></td>
-                                <td>@i</td>
-                                
+                                <td>@i</td>                        
+                                <td><img src="@item.Icon" width="100" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
                                 @*<td>
@@ -91,7 +78,7 @@
                                     </a>
                                 </td>*@
                                 <td>
-                                    <a href="/admin/news/productcategory/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/productcategory/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -149,7 +136,7 @@
                     var conf = confirm('Bạn có muốn xóa các mục này không ?');
                     if (conf === true) {
                         $.ajax({
-                            url: '/admin/news/deleteAll',
+                            url: '/admin/productcategory/deleteAll',
                             type: 'POST',
                             data: { ids: str },
                             success: function (rs) {
@@ -183,7 +170,7 @@
                 var conf = confirm("Bạn có muốn xóa danh mục này không ?")
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/news/delete',
+                        url: '/admin/productcategory/delete',
                         type: 'POST',
                         data: { id: id },
                         success: function (rs) {
@@ -195,29 +182,6 @@
                     })
                 }
             });
-        });
-        $(document).ready(function () {
-            $('body').on('click', '.btnActive', function (e) {
-                e.preventDefault();
-                var btn = $(this)
-                var id = btn.data("id");
-                $.ajax({
-                    url: '/admin/news/IsActive',
-                    type: 'POST',
-                    data: { id: id },
-                    success: function (rs) {
-                        if (rs.success) {
-                            if (rs.isActive) {
-                                btn.html("<i class='fas fa-times text-danger'></i>")
-                            }
-                            else {
-                                btn.html("<i class='fas fa-check text-success'></i>")
-                            }
-                        }
-                    }
-                })
-
-            })
         });
 
     </script>

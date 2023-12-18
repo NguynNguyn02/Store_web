@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebBanHang.Models.EF.Product>
+
+@if (Model.Any() && Model != null)
+{
+
+    foreach (var item in Model)
+    {
+        var strImg = "";
+        var img = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+        if (img != null)
+        {
+            strImg = img.Image;
+        }
+        <div class="product-item @item.ProductCategory.Alias">
+            <div class="product discount product_filter">
+                <div class="product_image">
+                    <img src="@strImg" alt="@item.Title">
+                </div>
+                <div class="favorite favorite_left"></div>
+                @if (item.PriceSale > 0)
+                {
+                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                }
+                
+                <div class="product_info">
+                    <h6 class="product_name"><a href="@item.Alias">@item.Title</a></h6>
+                    @if (item.PriceSale > 0)
+                    {
+                        <div class="product_price">@WebBanHang.Common.Common.FormatNumber(item.PriceSale, 2) $<span>@WebBanHang.Common.Common.FormatNumber(item.Price, 0) $</span></div>
+                    }
+                    else
+                    {
+                        <div class="product_price">
+                            @WebBanHang.Common.Common.FormatNumber(item.Price, 0) $
+                        </div>
+                    }
+                </div>
+                <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+            </div>
+        </div>
+
+    }
+}

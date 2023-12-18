@@ -5,14 +5,25 @@
 }
 
 <style>
-    .glImage{
-        list-style:none;
-        margin:0;
-        padding:0;
-        display:flex;
+    .glImage {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction:column;
+        
     }
     .glImage li{
         display: inline-block;
+        position:relative;
+
+    }
+    .box-btn{
+        position:absolute;
+        bottom:0;
+        left: 0;
+        width:100%;
+        text-align:center;
     }
 </style>
 <div class="card">
@@ -23,9 +34,8 @@
             <button type="button" class="btn btn-danger" data-card-widget="collapse" title="Collapse">
                 Xóa hết
             </button>
-            <button type="button" class="btn btn-success" data-card-widget="remove" title="Remove">
-                Thêm ảnh
-            </button>
+
+            <input type="button" class="btn btn-success" value="Thêm ảnh" onclick="BrowseServer();" />
         </div>
     </div>
     <div class="card-body">
@@ -34,9 +44,22 @@
             {
                 foreach (var item in Model)
                 {
-                    <li>
-                        <img src="@item.Image" width="100" height="100" />
-                    </li>
+            <li id="trow_@item.Id" >
+                <img src="@item.Image" width="200" height="200" />
+                <div class="box-btn">
+                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-trash"></i></a>
+                    @if (item.IsDefault)
+                    {
+                    
+                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-success btnDefault"><i class="fa fa-check"></i></a>
+                    }
+                    else
+                    {
+                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnDefault"><i class="fas fa-window-close"></i></a>
+
+                    }
+                </div>
+            </li> 
                 }
             }
         </ul>
@@ -47,3 +70,44 @@
     </div>
     <!-- /.card-footer-->
 </div>
+<script>
+    function BrowseServer(field) {
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (fileUrl) {
+            document.getElementById(field).value = fileUrl;
+            AddImage(@ViewBag.productId, fileUrl);
+        };
+        finder.popup();
+    };
+
+    function AddImage(id, url) {
+        $.ajax({
+            url: '/admin/ProductImages/AddImage',
+            type: 'POST',
+            data: { productId: id, url: url },
+            success: function (rs) {
+                if (rs.Success) {
+                    window.location.reload();
+                }
+            }
+        })
+    }
+    $(document).ready(function () {
+        $('body').on('click', '.btnDelete', function () {
+            var id = $(this).data('id');
+            var conf = confirm('Bạn có chắc chắn muốn xóa ảnh này không?');
+            if (conf === true) {
+                $.ajax({
+                    url: '/admin/ProductImages/Delete',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            $('#trow_' + id).remove();
+                        }
+                    }
+                })
+            }
+        })
+    })
+</script>

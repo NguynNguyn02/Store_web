@@ -86,7 +86,19 @@
                                             @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên tiêu đề" })
                                             @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Ảnh</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        @Html.TextBoxFor(x => x.Icon, new { @id = "txtImage", @class = "form-control" })
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <input type="button" class="btn btn-success" value="Tải ảnh" onclick="BrowseServer('txtImage');" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Seo Title</label>
                                             @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })

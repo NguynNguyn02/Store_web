@@ -75,6 +75,8 @@
                         <td>Số lượng</td>
                         <td>Giá</td>
                         <td>Ngày tạo</td>
+                        <td>Home</td>
+                        <td>Sale</td>
                         <td>Hiển thị</td>
                         <td></td>
                     </tr>
@@ -88,20 +90,41 @@
                         foreach (var item in Model)
                         {
                             var strCheck = item.IsActive ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+
+                            var strCheckHome = item.IsHome ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                            var strCheckSale = item.IsSale ? "<i class='fas fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                            var strImg = "";
+                            var iimg = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+                            if (iimg != null)
+                            {
+                                strImg=iimg.Image;
+                            }
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="ckbItem" value="@item.Id" /></td>
                                 <td>@i</td>
-                                <td><img class="imgproduct" data-id="@item.Id" src="@item.ProductImage.FirstOrDefault(x=>x.IsDefault).Image" width="100" /></td>
+                                <td><img class="imgproduct" data-id="@item.Id" src="@strImg" width="100" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.ProductCategory.Title</td>
                                 <td>@item.Quantity</td>
-                                <td>@item.Price</td>
+                                <td>@item.Price $</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a href="#" data-id="@item.Id" class="btnHome">
+                                        @Html.Raw(strCheckHome)
+                                    </a>
+                                </td> 
+                                <td>
+                                    <a href="#" data-id="@item.Id" class="btnSale">
+                                        @Html.Raw(strCheckSale)
+                                    </a>
+                                </td>
+
                                 <td>
                                     <a href="#" data-id="@item.Id" class="btnActive">
                                         @Html.Raw(strCheck)
                                     </a>
                                 </td>
+
                                 <td>
                                     <a href="/admin/products/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
@@ -158,7 +181,7 @@
             });
             $('body').on('click', ".imgproduct", function () {
                 var proid = $(this).attr("data-id");
-                $("#dialog #myIFrame").attr("src", "/admin/ProductImages/Index?id=" +proid)
+                $("#dialog #myIFrame").attr("src", "/admin/ProductImages/Index?id=" + proid)
                 $("#dialog").dialog('open');
                 return false;
             });
@@ -239,6 +262,47 @@
             });
         });
         $(document).ready(function () {
+            $('body').on('click', '.btnSale', function (e) {
+                e.preventDefault();
+                var btn = $(this)
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/products/IsSale',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.IsSale) {
+                                btn.html("<i class='fas fa-times text-danger'></i>")
+                            }
+                            else {
+                                btn.html("<i class='fas fa-check text-success'></i>")
+                            }
+                        }
+                    }
+                })
+            })
+            $('body').on('click', '.btnHome', function (e) {
+                e.preventDefault();
+                var btn = $(this)
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/products/IsHome',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.IsHome) {
+                                btn.html("<i class='fas fa-times text-danger'></i>")
+                            }
+                            else {
+                                btn.html("<i class='fas fa-check text-success'></i>")
+                            }
+                        }
+                    }
+                })
+
+            })
             $('body').on('click', '.btnActive', function (e) {
                 e.preventDefault();
                 var btn = $(this)
