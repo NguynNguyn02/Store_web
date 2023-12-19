@@ -397,7 +397,10 @@ jQuery(document).ready(function($)
 			values: [ 0, 580 ],
 			slide: function( event, ui )
 			{
-				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+				$('#FromAmount').val(ui.values[0])
+				$('#ToAmount').val(ui.values[1])
+				
 			}
 		});
 			

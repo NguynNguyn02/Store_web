@@ -75,9 +75,9 @@
                                     @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Alias</label>
-                                    @Html.TextBoxFor(x => x.Alias, new { @class = "form-control", @placeholder = "Alias" })
-                                    @Html.ValidationMessageFor(x => x.Alias, null, new { @class = "text-danger" })
+
+                                    @Html.HiddenFor(x => x.Alias, new { @class = "form-control", @placeholder = "Alias" })
+
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">SKU</label>
