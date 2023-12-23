@@ -35,6 +35,7 @@
                 if (rs.success) { 
                     $('#trow_' + id).remove();
                     $('#checkout_items').html(rs.Count);
+                    LoadCart();
                 }
             }
         })
@@ -43,17 +44,7 @@
     $('body').on('click', '.btnUpdate', function () {
         var id = $(this).data('id');
         var quantity = $('#Quantity_' + id).val();
-        alert(quantity);
-        $.ajax({
-            url: '/shoppingcart/update',
-            type: 'POST',
-            data: { id: id, quantity: quantity },
-            success: function (rs) {
-                if (rs.success) {
-                    LoadCart();
-                }
-            }
-        })
+        Update(id, quantity);
     })
     $('body').on('click', '.btnDeleteAll', function (e) {
         e.preventDefault;
@@ -90,6 +81,18 @@ function LoadCart() {
         type: 'GET',
         success: function (rs) {
             $('#load_data').html(rs);
+        }
+    })
+}
+function Update(id,quantity) {
+    $.ajax({
+        url: '/shoppingcart/Update',
+        type: 'POST',
+        data: { id: id, quantity: quantity },
+        success: function (rs) {
+            if (rs.success) {
+                LoadCart();
+            }
         }
     })
 }

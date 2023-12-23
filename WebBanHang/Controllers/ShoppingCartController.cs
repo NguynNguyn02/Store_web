@@ -12,10 +12,28 @@ namespace WebBanHang.Controllers
         // GET: ShoppongCart
         public ActionResult Index()
         {
-
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                ViewBag.CheckOutCart = cart;
+            }
+            return View();
+        }
+        public ActionResult CheckOut()
+        {
+            
             return View();
         }
         public ActionResult Partial_Item_Cart()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null)
+            {
+                return PartialView(cart.Items);
+            }
+            return PartialView();
+        }
+        public ActionResult Partial_Item_Pay()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null)
@@ -90,35 +108,30 @@ namespace WebBanHang.Controllers
         [HttpPost]
         public ActionResult Update(int id, int quantity)
         {
-            var code = new { success = false, id = id, quantity = quantity };
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null)
             {
-                var checkProduct = cart.Items.FirstOrDefault(x => x.ProductId == id);
-                if (checkProduct != null)
-                {
-                    checkProduct.Quantity = quantity;
-                    checkProduct.TotalPrice = checkProduct.Price * quantity;
-                    code = new { success = true, id = id, quantity = quantity };
-                    return Json(code);
-                }
+                cart.UpdateQuantity(id, quantity);
+                return Json(new { success=true});
             }
-            return Json(code);
+
+            return Json(new { success = false});
 
         }
         [HttpPost]
 
         public ActionResult DeleteAll()
         {
-           
+
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null)
             {
                 cart.ClearCart();
-                return Json(new{success = true});
+                return Json(new { success = true });
             }
             return Json(new { success = false });
         }
+
 
     }
 }

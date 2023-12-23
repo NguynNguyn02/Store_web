@@ -29,12 +29,16 @@
                     @Html.Action("Partial_Item_Cart", "ShoppingCart")
 
                 </div>
+                @if(ViewBag.CheckOutCart != null)
+            {
+
                 <div class="col-md-12">
                     <div class="text-right">
                         <a href="#" class="btn btn-danger btnDeleteAll">Xóa</a>
-                        <a href="#" class="btn btn-success btnPay">Thanh toán</a>
+                        <a href="/thanh-toan" class="btn btn-success btnPay">Thanh toán</a>
                     </div>
                 </div>
+            }
             </div>
         </div>
     </div>
