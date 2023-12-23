@@ -42,11 +42,24 @@ namespace WebBanHang.Models
                 checkExits.TotalPrice = checkExits.Price * checkExits.Quantity;
             }
         }
+        public decimal GetToAll()
+        {
+            return Items.Sum(x => x.TotalPrice);
+        }
+        public decimal GetTotalQuantity()
+        {
+            return Items.Sum(x => x.Quantity);
+        }
+        public void ClearCart()
+        {
+            Items.Clear();
+        }
     }
     public class ShoppingCartItem
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
+        public string Alias { get; set; }
         public string CategoryName { get; set; }
         public string ProductImg { get; set; }
         public int Quantity { get; set; }

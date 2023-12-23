@@ -13,6 +13,12 @@ namespace WebBanHang
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
+                name: "ShoppingCart",
+                url: "gio-hang",
+                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "WebBanHang.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Contact",
                 url: "lien-he",
                 defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
