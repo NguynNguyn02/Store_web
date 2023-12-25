@@ -1,6 +1,7 @@
-﻿@model IEnumerable<WebBanHang.Models.ShoppingCartItem>
+﻿
+
 @{
-    ViewBag.Title = "Giỏ hàng";
+    ViewBag.Title = "Đặt hàng thành công";
 }
 
 
@@ -26,18 +27,9 @@
 
             <div class="row">
                 <div class="main_content col-md-12" id="load_data">
-                    @Html.Action("Partial_Item_Cart", "ShoppingCart")
-
+                    <h2>Bạn đã đặt hàng thành công</h2>
                 </div>
-                @if (ViewBag.CheckOutCart != null)
-                {
-                    <div class="col-md-12" id="btnDelandPay">
-                        <div class="text-right" >
-                            <a href="" class="btn btn-danger btnDeleteAll">Xóa</a>
-                            <a href="/thanh-toan" class="btn btn-success btnPay">Thanh toán</a>
-                        </div>
-                    </div>
-                }
+                
             </div>
         </div>
     </div>

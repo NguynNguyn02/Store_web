@@ -35,6 +35,7 @@ namespace WebBanHang.Models.EF
         public decimal Price { get; set; }
         public decimal? PriceSale { get; set; }
         public int Quantity { get; set; }
+        public int ViewCount { get; set; }
         public bool IsActive { get; set; }
 
         public bool IsHome { get; set; }

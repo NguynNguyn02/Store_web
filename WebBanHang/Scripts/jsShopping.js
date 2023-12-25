@@ -70,6 +70,7 @@ function DeleteAll() {
         type: 'POST',
         success: function (rs) {
             if (rs.success) {
+                $('#btnDelandPay').remove(); 
                 LoadCart();
             }
         }

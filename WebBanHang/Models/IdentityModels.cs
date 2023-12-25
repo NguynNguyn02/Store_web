@@ -28,6 +28,7 @@ namespace WebBanHang.Models
         {
         }
         public DbSet<Category> Categories {get;set;}
+        public DbSet<ThongKe> ThongKes {get;set;}
         public DbSet<Adv> Advs{get;set;}
         public DbSet<Posts>  Posts{get;set;}
         public DbSet<News> News {get;set;}

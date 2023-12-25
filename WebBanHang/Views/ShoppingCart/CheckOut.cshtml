@@ -1,9 +1,12 @@
 ﻿
-@model WebBanHang.Models.EF.Order
 @{
     ViewBag.Title = "Thanh toán";
 }
-
+<style>
+    .error{
+        color:red;
+    }
+</style>
 
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
@@ -34,42 +37,8 @@
             <hr />
             <div class="row">
                 <div class="col-md-9">
-                    @using (Ajax.BeginForm("", "", new AjaxOptions
-                    {
-                        HttpMethod = "POST",
-                        UpdateTargetId = "load_data"
-
-                    }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <h3>Thông tin khách hàng</h3>
-                        <div class="form-group">
-                            <label>Họ tên khách hàng</label>
-                            <input type="text" name="CustomerName" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Số điện thoại </label>
-                            <input type="text" name="Phone" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Địa chỉ </label>
-                            <input type="text" name="Adress" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="Email" class="form-control" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Hình thức thanh toán</label>
-                            <select class="form-control" name="Payment">
-                                <option value="1" selected>Thanh toán khi nhận hàng</option>
-                                <option value="2">Chuyển khoản</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-success btn-block">Đặt hàng</button>
-                        </div>
-                    }
+                    <div id="show_fail"></div>
+                    @Html.Action("Partial_CheckOut","ShoppingCart")
                 </div>
                 <div class="col-md-3">
                     @Html.Action("Partial_Item_Pay", "ShoppingCart")
@@ -83,6 +52,40 @@
 </div>
 @section scripts{
     <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script>
+        function OnFailure(rs) {
+            if (!rs.success) {
+                $('#show_fail').html('Đặt hàng thất bại, vui lòng thử lại!')
+            }
+        }
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    'CustomerName': {
+                        required: true
+                    },
+                    'Phone': {
+                        required: true
+                    },
+                    'Adress': {
+                        required: true
+                    },
+                    'Email': {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    'CustomerName': 'Bạn không để trống trường này',
+                    'Phone': 'Bạn không để trống trường này',
+                    'Adress':'Bạn không để trống trường này',
+                    'Email':'Email không hợp lệ',
+                }
+
+            })
+
+        })
+    </script>
 }
 
 

@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/responsive.css">
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
 
 </head>
 <body>
@@ -86,7 +89,7 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo_container">
-                                <a href="/">colo<span>shop</span></a>
+                                <a href="/">TrungNguyen<span>Shop</span></a>
                             </div>
                             <nav class="navbar">
                                 @Html.Action("MenuTop", "Menu")
@@ -221,7 +224,6 @@
     </div>
 
 
-    <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
     <script src="~/Content/assets/styles/bootstrap4/popper.js"></script>
     <script src="~/Content/assets/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="~/Content/assets/plugins/Isotope/isotope.pkgd.min.js"></script>
@@ -230,7 +232,8 @@
     <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="~/Content/assets/js/custom.js"></script>
     <script src="~/Scripts/jsShopping.js"></script>
-
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
 

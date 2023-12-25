@@ -232,6 +232,10 @@
     <Compile Include="Migrations\202312232217276_UpdatePayment.Designer.cs">
       <DependentUpon>202312232217276_UpdatePayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312251135008_UpdateAccessCount.cs" />
+    <Compile Include="Migrations\202312251135008_UpdateAccessCount.Designer.cs">
+      <DependentUpon>202312251135008_UpdateAccessCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
@@ -253,8 +257,10 @@
     <Compile Include="Models\EF\ProductImage.cs" />
     <Compile Include="Models\EF\Subscribe.cs" />
     <Compile Include="Models\EF\SystemSetting.cs" />
+    <Compile Include="Models\EF\ThongKe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -4232,6 +4238,8 @@
     <Content Include="Views\ShoppingCart\Partial_Item_Cart.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_Item_Pay.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut_Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4239,7 +4247,6 @@
     <Folder Include="Content\ckfinder\ckfinder\userfiles\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Uploads\files\" />
-    <Folder Include="Views\ShoppongCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -4281,6 +4288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312232217276_UpdatePayment.resx">
       <DependentUpon>202312232217276_UpdatePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312251135008_UpdateAccessCount.resx">
+      <DependentUpon>202312251135008_UpdateAccessCount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
