@@ -1,0 +1,40 @@
+﻿@model WebBanHang.Models.ThongKeModel
+@if (Model != null) { 
+
+    <div class="thongke">
+        <table class="table">
+            <tr>
+                <td>Hôm nay</td>
+                <td>@Model.HomNay</td>
+            </tr>
+            <tr>
+                <td>Hôm qua</td>
+                <td>@Model.HomQua</td>
+            </tr>
+            <tr>
+                <td>Tuần này</td>
+                <td>@Model.TuanNay</td>
+            </tr>
+            <tr>
+                <td>Tuần trước</td>
+                <td>@Model.TuanTruoc</td>
+            </tr>
+            <tr>
+                <td>Tháng này</td>
+                <td>@Model.ThangNay</td>
+            </tr>
+            <tr>
+                <td>Tháng trước</td>
+                <td>@Model.ThangTruoc</td>
+            </tr>
+            <tr>
+                <td>Tất cả</td>
+                <td>@Model.TatCa</td>
+            </tr>
+            <tr>
+                <td>Số người online</td>
+                <td>@ViewBag.visitors_online</td>
+            </tr>
+        </table>
+    </div>
+}
