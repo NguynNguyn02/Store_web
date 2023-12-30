@@ -11,7 +11,6 @@ namespace WebBanHang.Common
     public class Common
     {
 
-
         private static string password = ConfigurationManager.AppSettings["PasswordEmail"];
         private static string Email = ConfigurationManager.AppSettings["Email"];
         public static bool SendMail(string name, string subject, string content,
@@ -29,9 +28,9 @@ namespace WebBanHang.Common
                     smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
 
                     smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new NetworkCredential() { 
-                        UserName=Email,
-                        Password=password
+                    smtp.Credentials = new NetworkCredential() {
+                        UserName = Email,
+                        Password = password
                     };
                 }
                 MailAddress fromAddress = new MailAddress(Email, name);

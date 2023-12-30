@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,7 +63,58 @@ namespace WebBanHang.Controllers
                     order.Code = "DH" + random.Next(0, 9) + random.Next(0, 9) + random.Next(0, 9) + random.Next(0, 9) + random.Next(0, 9);
                     db.Orders.Add(order);
                     db.SaveChanges();
+                    //send mail cho khach hang
+                    var strSanPham = "";
+                    var thanhtien = decimal.Zero;
+                    var tongtien = decimal.Zero; ;
+                    foreach (var sp in cart.Items)
+                    {
+                        strSanPham += "<tr>";
+                        strSanPham += "<td>"+ sp.ProductName+ "</td>";
+                        strSanPham += "<td>"+ sp.Quantity + "</td>";
+                        strSanPham += "<td>"+ WebBanHang.Common.Common.FormatNumber(sp.TotalPrice,0)+"$"+ "</td>";
+                        strSanPham += "</tr>";
+                        thanhtien += sp.Price * sp.Quantity;
+                    }
+                    var phuongthuc = "";
+                    if ( model.TypePayment == 1)
+                    {
+                        phuongthuc = "Thanh toán khi nhận hàng";
+                    }
+                    else
+                    {
+                        phuongthuc = "Chuyển khoản";
+                    }
+                    
+                    tongtien = thanhtien;
+                    string contentCustom = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/send2.html"));
+                    contentCustom = contentCustom.Replace("{{MaDon}}",order.Code);
+                    contentCustom = contentCustom.Replace("{{SanPham}}", strSanPham);
+                    contentCustom = contentCustom.Replace("{{TenKhachHang}}", order.CustomerName);
+                    contentCustom = contentCustom.Replace("{{Phone}}", order.Phone);
+                    contentCustom = contentCustom.Replace("{{Email}}", model.Email);
+                    contentCustom = contentCustom.Replace("{{NgayDat}}",DateTime.Now.ToString("dd/MM/yyyy") );
+                    contentCustom = contentCustom.Replace("{{DiaChiNhanHang}}", order.Address);
+                    contentCustom = contentCustom.Replace("{{PhuongThucThanhToan}}", phuongthuc);
+                    contentCustom = contentCustom.Replace("{{ThanhTien}}", WebBanHang.Common.Common.FormatNumber(thanhtien, 0));
+                    contentCustom = contentCustom.Replace("{{TongTien}}", WebBanHang.Common.Common.FormatNumber(tongtien, 0));
+                    WebBanHang.Common.Common.SendMail("TrungNguyenShop", "Đơn hàng + #" + order.Code, contentCustom, model.Email);
+
+                    
+                    string contentAdmin = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/send1.html"));
+                    contentAdmin = contentAdmin.Replace("{{SanPham}}", strSanPham);
+                    contentAdmin = contentAdmin.Replace("{{MaDon}}", order.Code);
+                    contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.CustomerName);
+                    contentAdmin = contentAdmin.Replace("{{Phone}}", order.Phone);
+                    contentAdmin = contentAdmin.Replace("{{Email}}", model.Email);
+                    contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
+                    contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.Address);
+                    contentAdmin = contentAdmin.Replace("{{PhuongThucThanhToan}}", phuongthuc);
+                    contentAdmin = contentAdmin.Replace("{{ThanhTien}}", WebBanHang.Common.Common.FormatNumber(thanhtien, 0));
+                    contentAdmin = contentAdmin.Replace("{{TongTien}}", WebBanHang.Common.Common.FormatNumber(tongtien, 0));
+                    WebBanHang.Common.Common.SendMail("TrungNguyenShop", "Đơn hàng mới + #" + order.Code, contentAdmin, ConfigurationManager.AppSettings["EmailAdmin"]);
                     cart.ClearCart();
+
                     return RedirectToAction("CheckOut_Success");
                 }
             }

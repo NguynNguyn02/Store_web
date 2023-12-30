@@ -239,6 +239,10 @@
     <Compile Include="Migrations\202312251135008_UpdateAccessCount.Designer.cs">
       <DependentUpon>202312251135008_UpdateAccessCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312292258552_Update_EmailInOrder.cs" />
+    <Compile Include="Migrations\202312292258552_Update_EmailInOrder.Designer.cs">
+      <DependentUpon>202312292258552_Update_EmailInOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
@@ -4193,6 +4197,8 @@
     <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="scripts_ckfinder_editor.txt" />
+    <Content Include="Content\template\send1.html" />
+    <Content Include="Content\template\send2.html" />
     <Content Include="Uploads\images\nguyen.jpg" />
     <Content Include="Uploads\_thumbs\Images\nguyen.jpg" />
     <Content Include="Web.config" />
@@ -4297,6 +4303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312251135008_UpdateAccessCount.resx">
       <DependentUpon>202312251135008_UpdateAccessCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312292258552_Update_EmailInOrder.resx">
+      <DependentUpon>202312292258552_Update_EmailInOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>

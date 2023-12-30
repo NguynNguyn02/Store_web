@@ -126,3 +126,4 @@ C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\We
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateAccessCount.resources
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\Dapper.dll
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\Dapper.xml
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update_EmailInOrder.resources
