@@ -51,14 +51,15 @@ namespace WebBanHang.Controllers
                     {
                         ProductId = x.ProductId,
                         Price = x.Price,
-                        Quantity = x.Quantity
+                        Quantity = x.Quantity,
+                        
                     }));
                     order.TotalAmount = cart.Items.Sum(x => (x.Quantity * x.Price));
                     order.ModifiedDate = DateTime.Now;
                     order.CreatedBy = model.Phone;
                     order.CreatedDate = DateTime.Now;
                     order.TypePayment = model.TypePayment;
-                    
+                    order.Email = model.Email;
                     Random random = new Random();
                     order.Code = "DH" + random.Next(0, 9) + random.Next(0, 9) + random.Next(0, 9) + random.Next(0, 9) + random.Next(0, 9);
                     db.Orders.Add(order);
@@ -92,7 +93,7 @@ namespace WebBanHang.Controllers
                     contentCustom = contentCustom.Replace("{{SanPham}}", strSanPham);
                     contentCustom = contentCustom.Replace("{{TenKhachHang}}", order.CustomerName);
                     contentCustom = contentCustom.Replace("{{Phone}}", order.Phone);
-                    contentCustom = contentCustom.Replace("{{Email}}", model.Email);
+                    contentCustom = contentCustom.Replace("{{Email}}", order.Email);
                     contentCustom = contentCustom.Replace("{{NgayDat}}",DateTime.Now.ToString("dd/MM/yyyy") );
                     contentCustom = contentCustom.Replace("{{DiaChiNhanHang}}", order.Address);
                     contentCustom = contentCustom.Replace("{{PhuongThucThanhToan}}", phuongthuc);
@@ -106,7 +107,7 @@ namespace WebBanHang.Controllers
                     contentAdmin = contentAdmin.Replace("{{MaDon}}", order.Code);
                     contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.CustomerName);
                     contentAdmin = contentAdmin.Replace("{{Phone}}", order.Phone);
-                    contentAdmin = contentAdmin.Replace("{{Email}}", model.Email);
+                    contentAdmin = contentAdmin.Replace("{{Email}}", order.Email);
                     contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
                     contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.Address);
                     contentAdmin = contentAdmin.Replace("{{PhuongThucThanhToan}}", phuongthuc);
