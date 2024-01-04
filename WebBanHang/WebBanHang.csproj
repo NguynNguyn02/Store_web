@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
@@ -252,6 +253,10 @@
     <Compile Include="Migrations\202401011857576_Update_OrderDetail.Designer.cs">
       <DependentUpon>202401011857576_Update_OrderDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401040817375_UpdateUserAccount.cs" />
+    <Compile Include="Migrations\202401040817375_UpdateUserAccount.Designer.cs">
+      <DependentUpon>202401040817375_UpdateUserAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
@@ -284,6 +289,59 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\dist\css\adminlte.css" />
+    <Content Include="Content\assets\dist\css\adminlte.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\assets\dist\img\AdminLTELogo.png" />
+    <Content Include="Content\assets\dist\img\avatar.png" />
+    <Content Include="Content\assets\dist\img\avatar2.png" />
+    <Content Include="Content\assets\dist\img\avatar3.png" />
+    <Content Include="Content\assets\dist\img\avatar4.png" />
+    <Content Include="Content\assets\dist\img\avatar5.png" />
+    <Content Include="Content\assets\dist\img\boxed-bg.jpg" />
+    <Content Include="Content\assets\dist\img\boxed-bg.png" />
+    <Content Include="Content\assets\dist\img\credit\american-express.png" />
+    <Content Include="Content\assets\dist\img\credit\cirrus.png" />
+    <Content Include="Content\assets\dist\img\credit\mastercard.png" />
+    <Content Include="Content\assets\dist\img\credit\paypal.png" />
+    <Content Include="Content\assets\dist\img\credit\paypal2.png" />
+    <Content Include="Content\assets\dist\img\credit\visa.png" />
+    <Content Include="Content\assets\dist\img\default-150x150.png" />
+    <Content Include="Content\assets\dist\img\icons.png" />
+    <Content Include="Content\assets\dist\img\photo1.png" />
+    <Content Include="Content\assets\dist\img\photo2.png" />
+    <Content Include="Content\assets\dist\img\photo3.jpg" />
+    <Content Include="Content\assets\dist\img\photo4.jpg" />
+    <Content Include="Content\assets\dist\img\prod-1.jpg" />
+    <Content Include="Content\assets\dist\img\prod-2.jpg" />
+    <Content Include="Content\assets\dist\img\prod-3.jpg" />
+    <Content Include="Content\assets\dist\img\prod-4.jpg" />
+    <Content Include="Content\assets\dist\img\prod-5.jpg" />
+    <Content Include="Content\assets\dist\img\user1-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user2-160x160.jpg" />
+    <Content Include="Content\assets\dist\img\user3-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user4-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user5-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user6-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user7-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user8-128x128.jpg" />
+    <Content Include="Content\assets\dist\js\adminlte.js" />
+    <Content Include="Content\assets\dist\js\adminlte.min.js" />
+    <Content Include="Content\assets\dist\js\demo.js" />
+    <Content Include="Content\assets\dist\js\pages\dashboard.js" />
+    <Content Include="Content\assets\dist\js\pages\dashboard2.js" />
+    <Content Include="Content\assets\dist\js\pages\dashboard3.js" />
     <Content Include="Content\assets\images\banner_1.jpg" />
     <Content Include="Content\assets\images\banner_2.jpg" />
     <Content Include="Content\assets\images\banner_3.jpg" />
@@ -4199,6 +4257,27 @@
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Content\assets\dist\css\adminlte.css.map" />
+    <Content Include="Content\assets\dist\css\adminlte.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Content\assets\dist\js\.eslintrc.json" />
+    <Content Include="Content\assets\dist\js\adminlte.js.map" />
+    <Content Include="Content\assets\dist\js\adminlte.min.js.map" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -4275,6 +4354,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\_LayoutLogin\" />
     <Folder Include="Content\ckfinder\ckfinder\userfiles\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Uploads\files\" />
@@ -4328,6 +4408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401011857576_Update_OrderDetail.resx">
       <DependentUpon>202401011857576_Update_OrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401040817375_UpdateUserAccount.resx">
+      <DependentUpon>202401040817375_UpdateUserAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
