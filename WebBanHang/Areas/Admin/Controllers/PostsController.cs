@@ -8,6 +8,8 @@ using WebBanHang.Models.EF;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Employee")]
+
     public class PostsController : Controller
     {
         // GET: Admin/Posts

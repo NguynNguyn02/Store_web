@@ -8,6 +8,8 @@ using WebBanHang.Models.EF;
 using PagedList;
 namespace WebBanHang.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Employee")]
+
     public class NewsController : Controller
     {
         // GET: Admin/News

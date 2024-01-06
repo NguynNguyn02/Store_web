@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ using WebBanHang.Models;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -60,6 +64,7 @@ namespace WebBanHang.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -75,6 +80,13 @@ namespace WebBanHang.Areas.Admin.Controllers
             {
                 return View(model);
             }
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindByName(model.UserName);
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var userrole = db.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId == user.Id);
+            var role = roleManager.FindById(userrole.RoleId);
+            Session["UserName"] = user.FullName;
+            Session["Role"] = role.Name;
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -94,11 +106,29 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
         }
         //
+        // POST: /Account/LogOff
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session["UserName"] = "";
+            Session["Role"] = "";
+            return RedirectToAction("Index", "Home");
+        }
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Create()
         {
-            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name");
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
             return View();
         }
 
@@ -123,6 +153,7 @@ namespace WebBanHang.Areas.Admin.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, model.Role);
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -135,12 +166,45 @@ namespace WebBanHang.Areas.Admin.Controllers
                 }
                 AddErrors(result);
             }
-            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name");
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Name", "Name");
 
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        [HttpPost]
+        public ActionResult Delete(string userId)
+        {
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var user = userManager.FindById(userId);
+                if (user != null)
+                {
+                    userManager.Delete(user);
+                    return Json(new { success = true });
+                }
+            }
+            return Json(new { success = false });
+        }
+        //public ActionResult Edit(string id)
+        //{
+        //    var item = db.Users.Find(id);
+        //    return View(item);
+        //}
+        //[HttpPost]
+        //public ActionResult Edit(ApplicationUser model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        //        db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+        //        userManager.Update(model);
+        //        return RedirectToAction("index");
+        //    }
+        //    return View(model);
+        //}
+
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

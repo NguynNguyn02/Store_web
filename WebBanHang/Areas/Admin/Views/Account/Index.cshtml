@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<WebBanHang.Models.ApplicationUser>
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using System.Collections.Generic;
+@using System.Linq;
+@using WebBanHang.Models;
 @{
     ViewBag.Title = "Quản lý tài khoản";
 }
@@ -38,26 +43,37 @@
                         <th>#</th>
                         <th>Tài khoản</th>
                         <th>Họ tên</th>
+                        <th>Quyền</th>
                         <th>Email</th>
                         <th>Ngày tạo</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @{
+                        ApplicationDbContext db = new ApplicationDbContext();
+                        var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+                    }
+
                     @if (Model != null && Model.Any())
                     {
+
                         var i = 1;
                         foreach (var item in Model)
                         {
-                            <tr id="trow_@item.UserName">
+                            var userrole = db.Set<IdentityUserRole>().FirstOrDefault(x => x.UserId == item.Id);
+                            var role = roleManager.FindById(userrole.RoleId);
+
+                            <tr id="trow_@item.Id">
                                 <td>@i</td>
                                 <td>@item.UserName</td>
                                 <td>@item.FullName</td>
+                                <td>@role.Name</td>
                                 <td>@item.Email</td>
                                 <td>@item.CreateByDay.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    <a href="/admin/account/edit/@item.UserName" class="btn btn-primary">Sửa</a>
-                                    <a href="#" class="btn btn-danger" data-id="@item.UserName" id="btnDelete">Xóa</a>
+                                    <a href="/admin/account/edit/@item.Id" class="btn btn-primary">Sửa</a>
+                                    <a href="#" class="btn btn-danger" data-id="@item.Id" id="btnDelete">Xóa</a>
                                 </td>
                             </tr>
                             i++;
@@ -81,11 +97,11 @@
             $('body').on('click', '#btnDelete', function () {
 
                 var id = $(this).data("id");
-                alert(id);
+
                 $.ajax({
-                    url: '/admin/role/delete',
+                    url: '/admin/account/delete',
                     type: 'POST',
-                    data: { roleId: id },
+                    data: { userId: id },
                     success: function (res) {
                         if (res.success) {
                             $('#trow_' + id).remove();
@@ -99,6 +115,7 @@
     </script>
 
 }
+
 
 
 

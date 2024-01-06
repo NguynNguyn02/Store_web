@@ -9,11 +9,12 @@ using PagedList;
 
 namespace WebBanHang.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Employee")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Products
-
+        
         public ActionResult Index(int? page)
         {
             var pageSize = 10;
@@ -83,19 +84,20 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             return View(model);
         }
+
         public ActionResult Edit(int id)
         {
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "Title");
             var item = db.Products.Find(id);
             return View(item);
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Product model)
         {
             if (ModelState.IsValid)
             {
-
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
                 db.Products.Attach(model);
@@ -105,7 +107,10 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
             return View(model);
         }
+
+        
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var item = db.Products.Find(id);

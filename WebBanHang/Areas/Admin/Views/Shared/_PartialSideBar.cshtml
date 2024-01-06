@@ -6,7 +6,7 @@
             <img src="~/Content/clients/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Lê Trung Nguyên</a>
+            <a href="#" class="d-block">@Session["UserName"]</a>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+            with font-awesome or any other icon font library -->
             <li class="nav-item">
                 <a href="~/admin/Category" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -36,38 +36,39 @@
                     </p>
                 </a>
                 @*<ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="~/Content/clients/index.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard v1</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="~/Content/clients/index2.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard v2</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="~/Content/clients/index3.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard v3</p>
-                    </a>
-                </li>
-            </ul>*@
+                        <li class="nav-item">
+                            <a href="~/Content/clients/index.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v1</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Content/clients/index2.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v2</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Content/clients/index3.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v3</p>
+                            </a>
+                        </li>
+                    </ul>*@
             </li>
             <li class="nav-item">
                 <a href="/admin/account" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    
+                    <i class="fas fa-users nav-icon"></i>
                     <p>
-                        Quản lý tài khoản
+                        Tài khoản
                         @*<span class="right badge badge-danger">New</span>*@
                     </p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/admin/role" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="fas fa-user-tag nav-icon"></i>
                     <p>
                         Role
                         @*<span class="right badge badge-danger">New</span>*@
@@ -77,7 +78,7 @@
             </li>
             <li class="nav-item">
                 <a href="/admin/news" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-newspaper"></i>
                     <p>
                         Tin tức
                         @*<span class="right badge badge-danger">New</span>*@
@@ -143,10 +144,29 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logOffForm').submit()" class="nav-link">
+                    <i class="fas fa-sign-out-alt nav-icon"></i>
+                    <p>
+                        Đăng xuất(@Session["Role"])
+                        @*<span class="right badge badge-danger">New</span>*@
+                    </p>
+                </a>
             </li>
+
         </ul>
     </nav>
     <!-- /.sidebar-menu -->
 </div>
 <!-- /.sidebar -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+@if (Request.IsAuthenticated)
+{
+<div style="display:none">
+
+    @using(Html.BeginForm("Logoff", "Account", FormMethod.Post,new {@id="logOffForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+</div>
+}

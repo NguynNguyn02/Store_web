@@ -127,5 +127,5 @@ C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\Dapper.d
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\bin\Dapper.xml
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update_EmailInOrder.resources
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.Update_OrderDetail.resources
-C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.AssemblyReference.cache
 C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.Migrations.UpdateUserAccount.resources
+C:\Users\admin\Desktop\ASPNetCore\StoreOnline\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.AssemblyReference.cache
