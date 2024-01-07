@@ -194,12 +194,16 @@
     <Compile Include="Areas\Admin\Controllers\ProductImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingSystemController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemSystem.cs" />
     <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\SettingHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -283,6 +287,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\SettingSystemViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\ThongKeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4279,6 +4284,8 @@
     <Content Include="Content\assets\dist\js\adminlte.js.map" />
     <Content Include="Content\assets\dist\js\adminlte.min.js.map" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingSystem\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingSystem\Partial_Setting.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -4289,6 +4296,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -4351,6 +4360,7 @@
     <Content Include="Views\ShoppingCart\Partial_CheckOut.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOut_Success.cshtml" />
     <Content Include="Views\Home\Refresh.cshtml" />
+    <Content Include="Views\News\Partial_Home_News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

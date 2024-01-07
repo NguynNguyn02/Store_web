@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/category" class="nav-link">@ViewBag.Title</a>
+        </li>
+    </ul>
+}
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">@ViewBag.Title</h3>
+        </div>
+        <div class="card-body">
+            @Html.Action("Partial_Setting", "settingsystem")
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+@section scripts{
+    <script>
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        };
+
+    </script>
+
+}
+

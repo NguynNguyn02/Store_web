@@ -19,6 +19,12 @@ namespace WebBanHang
                 namespaces: new[] { "WebBanHang.Controllers" }
             );
             routes.MapRoute(
+                name: "Login",
+                url: "admin/",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "WebBanHang.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Contact",
                 url: "lien-he",
                 defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },

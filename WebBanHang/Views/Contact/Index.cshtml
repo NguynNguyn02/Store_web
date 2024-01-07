@@ -1,4 +1,4 @@
-﻿
+﻿@using WebBanHang.Common
 @{
     ViewBag.Title = "Liên hệ";
 }
@@ -43,8 +43,8 @@
                 <h1>Contact Us</h1>
                 <p>There are many ways to contact us. You may drop us a line, give us a call or send an email, choose what suits you the most.</p>
                 <div>
-                    <p>(800) 686-6688</p>
-                    <p>info.deercreative@gmail.com</p>
+                    <p>@SettingHelper.GetValue("SettingHotline")</p>
+                    <p>@SettingHelper.GetValue("SettingEmail")</p>
                 </div>
                 <div>
                     <p>mm</p>
