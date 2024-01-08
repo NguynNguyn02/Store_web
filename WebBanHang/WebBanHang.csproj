@@ -261,6 +261,10 @@
     <Compile Include="Migrations\202401040817375_UpdateUserAccount.Designer.cs">
       <DependentUpon>202401040817375_UpdateUserAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401072232114_Updated_subcribe.cs" />
+    <Compile Include="Migrations\202401072232114_Updated_subcribe.Designer.cs">
+      <DependentUpon>202401072232114_Updated_subcribe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\UpdateCategory.cs" />
     <Compile Include="Migrations\UpdateCategory.Designer.cs">
       <DependentUpon>UpdateCategory.cs</DependentUpon>
@@ -4361,6 +4365,9 @@
     <Content Include="Views\ShoppingCart\CheckOut_Success.cshtml" />
     <Content Include="Views\Home\Refresh.cshtml" />
     <Content Include="Views\News\Partial_Home_News.cshtml" />
+    <Content Include="Views\Home\Partial_Subscribe.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4422,6 +4429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401040817375_UpdateUserAccount.resx">
       <DependentUpon>202401040817375_UpdateUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401072232114_Updated_subcribe.resx">
+      <DependentUpon>202401072232114_Updated_subcribe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\UpdateCategory.resx">
       <DependentUpon>UpdateCategory.cs</DependentUpon>

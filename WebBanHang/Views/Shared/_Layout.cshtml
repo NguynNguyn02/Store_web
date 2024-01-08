@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
@@ -66,15 +68,31 @@
                                             <li><a href="#">Spanish</a></li>
                                         </ul>
                                     </li>
-                                    <li class="account">
-                                        <a href="#">
-                                            My Account
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="account_selection">
-                                            <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
-                                        </ul>
+                                    <li class="account" style="padding-right:15px">
+                                        @if (!Request.IsAuthenticated)
+                                        {
+                                            <a href="#">
+                                                My Account
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="account_selection">
+                                                <li><a href="account/login"><i class="fas fa-sign-in-alt"></i>Đăng nhập</a></li>
+                                                <li><a href="account/Register"><i class="fa fa-user-plus" aria-hidden="true"></i>Đăng kí</a></li>
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <a href="#">
+                                                @User.Identity.Name
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+
+                                            <ul class="account_selection">
+                                                <li><a href="/"><i class="fas fa-user"></i>Profile</a></li>
+                                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fas fa-sign-out-alt nav-icon" aria-hidden="true"></i>Đăng xuất</a></li>
+                                            </ul>
+                                        }
+
                                     </li>
                                 </ul>
                             </div>
@@ -82,7 +100,14 @@
                     </div>
                 </div>
             </div>
+            @if (Request.IsAuthenticated)
+            {
+                <div style="display:none">
 
+                    @using (Html.BeginForm("Logoff", "Account", FormMethod.Post, new { @id = "logOffForm" }))
+                    {
+                        @Html.AntiForgeryToken()}
+                </div>}
             <!-- Main Navigation -->
 
             <div class="main_nav_container">
@@ -132,7 +157,7 @@
                             <li><a href="#">gbp</a></li>
                         </ul>
                     </li>
-                    <li class="menu_item has-children">
+                    <li class="language">
                         <a href="#">
                             English
                             <i class="fa fa-angle-down"></i>
@@ -144,22 +169,17 @@
                             <li><a href="#">Spanish</a></li>
                         </ul>
                     </li>
-                    <li class="menu_item has-children">
+                    <li class="account">
                         <a href="#">
                             My Account
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="menu_selection">
-                            <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                            <li><a href="account/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
+                            <li><a href="account/Register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                         </ul>
                     </li>
-                    <li class="menu_item"><a href="#">home</a></li>
-                    <li class="menu_item"><a href="#">shop</a></li>
-                    <li class="menu_item"><a href="#">promotion</a></li>
-                    <li class="menu_item"><a href="#">pages</a></li>
-                    <li class="menu_item"><a href="#">blog</a></li>
-                    <li class="menu_item"><a href="#">contact</a></li>
+
                 </ul>
             </div>
         </div>
@@ -171,26 +191,7 @@
 
         <!-- Newsletter -->
 
-        <div class="newsletter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-                            <h4>Newsletter</h4>
-                            <p>Subscribe to our newsletter and get 20% off your first purchase</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <form action="post">
-                            <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                                <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-                                <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @Html.Action("Partial_Subscribe", "Home")
 
         <!-- Footer -->
 
@@ -235,6 +236,7 @@
     <script src="~/Scripts/jsShopping.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
 

@@ -22,7 +22,7 @@ namespace WebBanHang
                 name: "Login",
                 url: "admin/",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "WebBanHang.Controllers" }
+                namespaces: new[] { "WebBanHang.Areas.Admin.Controllers" }
             );
             routes.MapRoute(
                 name: "Contact",
@@ -43,9 +43,21 @@ namespace WebBanHang
                 namespaces: new[] { "WebBanHang.Controllers" }
             );
             routes.MapRoute(
+                name: "DetailNews",
+                url: "{alias}-new{id}",
+                defaults: new { controller = "News", action = "Detail", id = UrlParameter.Optional },
+                namespaces: new[] { "WebBanHang.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Products",
                 url: "san-pham",
                 defaults: new { controller = "Products", action = "Index", alias = UrlParameter.Optional },
+                namespaces: new[] { "WebBanHang.Controllers" }
+            );
+            routes.MapRoute(
+                name: "NewsList",
+                url: "tin-tuc",
+                defaults: new { controller = "News", action = "Index", alias = UrlParameter.Optional },
                 namespaces: new[] { "WebBanHang.Controllers" }
             );
             routes.MapRoute(

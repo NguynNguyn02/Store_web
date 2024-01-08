@@ -13,8 +13,13 @@ namespace WebBanHang.Controllers
         // GET: News
         public ActionResult Index()
         {
-
-            return View();
+            var items = db.News.ToList();
+            return View(items);
+        }
+        public ActionResult Detail(int id)
+        {
+            var item = db.News.Find(id);
+            return View(item);
         }
         public ActionResult Partial_Home_News()
         {
