@@ -41,7 +41,7 @@ namespace WebBanHang.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             var item = db.Categories.Find(id);
-            return View();
+            return View(item);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -54,6 +54,7 @@ namespace WebBanHang.Areas.Admin.Controllers
                 model.Alias = WebBanHang.Models.Common.Filter.FilterChar(model.Title);
                 db.Entry(model).Property(x => x.Title).IsModified = true;
                 db.Entry(model).Property(x => x.Description).IsModified = true;
+                db.Entry(model).Property(x => x.Link).IsModified = true;
                 db.Entry(model).Property(x => x.Alias).IsModified = true;
                 db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
                 db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;

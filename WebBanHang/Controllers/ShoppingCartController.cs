@@ -30,7 +30,6 @@ namespace WebBanHang.Controllers
         }
         public ActionResult CheckOut_Success()
         {
-
             return View();
         }
         [HttpPost]
@@ -116,7 +115,7 @@ namespace WebBanHang.Controllers
                     WebBanHang.Common.Common.SendMail("TrungNguyenShop", "Đơn hàng mới + #" + order.Code, contentAdmin, ConfigurationManager.AppSettings["EmailAdmin"]);
                     cart.ClearCart();
 
-                    return RedirectToAction("CheckOut_Success");
+                    return RedirectToAction("CheckOut_Success", "ShoppingCart");
                 }
             }
             return Json(code);

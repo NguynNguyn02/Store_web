@@ -1,6 +1,8 @@
 ﻿@model WebBanHang.Models.EF.News
 @{
-    ViewBag.Title = "Chi tiết tin tức";
+    ViewBag.Title = Model.SeoTitle;
+    ViewBag.SeoDescription = Model.SeoDescription ?? Model.Title;
+    ViewBag.SeoKeyword = Model.SeoKeywords ?? Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
@@ -22,18 +24,26 @@
     }
 </style>
 <div class="container news_section_container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="title-news">
-                @ViewBag.Title
-            </div>
-
-        </div>
-    </div>
-
     @if (Model != null)
     {
-        <h1>@Model.Image</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title-news">@Model.Title</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Model.Description
+            </div>
+            <div class="col-md-12">
+                @Html.Raw(Model.Detail)
+            </div>
+        </div>
+
+
     }
+
+
+
 </div>
 

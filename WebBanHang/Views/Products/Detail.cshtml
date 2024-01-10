@@ -1,6 +1,8 @@
 ﻿@model WebBanHang.Models.EF.Product
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = Model.SeoTitle;
+    ViewBag.SeoDescription = Model.SeoDescription??Model.Title;
+    ViewBag.SeoKeyword = Model.SeoKeywords??Model.Title;
 }
 
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_styles.css">
